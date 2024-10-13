@@ -79,9 +79,7 @@ After running the script, you should see two new files in your directory:
   Author Name
 
   - Completed: YYYY-MM-DD
-  - My Rating: Rating out of 5
-  - Number of Pages: Page count
-  - Reads: Number of times read
+  - My Rating: /5  
 
   Review text in Markdown format.
 

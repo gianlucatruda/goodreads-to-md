@@ -50,9 +50,6 @@ def html_to_markdown(html_content):
     # Remove any remaining HTML tags
     text = re.sub(r"<[^>]+>", "", text)
 
-    # Replace multiple newlines with a single newline
-    # text = re.sub(r"\n+", "\n", text)
-
     # Strip leading/trailing whitespace
     text = text.strip()
 
@@ -115,15 +112,14 @@ for book in read_books:
 # Write reviews.md
 with open("reviews.md", "w", encoding="utf-8") as f:
     for year, books in books_by_year.items():
-        f.write(f"## {year}\n\n")
+        f.write(f"## {year} ({len(books)} books)\n\n")
         for book in books:
             f.write(f"### {book['title']} ({book['original_publication_year']})\n\n")
             f.write(f"{book['author']}\n\n")
             f.write(f"- Completed: {book['date_read'].strftime('%Y-%m-%d')}\n")
-            f.write(f"- My Rating: {book['my_rating']}\n")
-            f.write(f"- Number of Pages: {book['number_of_pages']}\n")
-            f.write(f"- Reads: {book['read_count']}\n\n")
-            f.write(f"{book['review']}\n\n")
+            f.write(f"- My Rating: {book['my_rating']}/5\n\n")
+            if book["review"]:
+                f.write(f"{book['review']}\n\n")
             f.write("---\n\n")
 
 # Sort to-read books by date_added, most recent first
